@@ -46,7 +46,7 @@ class eyeFilter:
             eye_width2 = int(hypot(left_eye2[0] - right_eye2[0], left_eye2[1] - right_eye2[1]) * 1.7)
             eye_height2 = int(eye_width2 * 0.67)
 
-            # New nose position
+            # New eye position
             top_left = (int(center_eye[0] - eye_width / 2), int(center_eye[1] - eye_height / 2))
             bottom_right = (int(center_eye[0] + eye_width / 2), int(center_eye[1] + eye_height / 2))
 

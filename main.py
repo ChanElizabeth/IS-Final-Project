@@ -1,15 +1,12 @@
 from keras.models import load_model
-from time import sleep
-from keras.models import load_model
 from keras.preprocessing.image import img_to_array
-from keras.preprocessing import image
 import cv2
 import numpy as np
 from Eyefilter import eyeFilter
 import os
 
 # Menu
-menuOptions = "[1] Object Classification " \
+menuOptions = "[1] Image Classification " \
               "\n[2] Face Filter For Human Emotions" \
               "\n[3] Exit" \
               "\nPlease choose 1/2/3"
@@ -41,7 +38,6 @@ def predict_object(file):
     print("Predicting .................................")
     ar=convert_to_array(file)
     ar=ar/255
-    label=1
     a=[]
     a.append(ar)
     a=np.array(a).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
@@ -53,11 +49,6 @@ def predict_object(file):
     object=get_object_name(label_index)
     print(object)
     print("The predicted Object is a "+object+" with accuracy =    "+str(acc))
-
-    img = cv2.imread(file)
-    cv2.imshow('Object', img)
-    cv2.waitKey(1000)
-    cv2.destroyAllWindows()
 
 def ui():
     objects = input("Please input the file to be predict: ")
@@ -84,16 +75,8 @@ def faceFilter():
     while True:
         # Grab a single frame of video
         ret, frame = cap.read()
-        labels = []
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = face_classifier.detectMultiScale(gray, 1.3, 5)
-
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-
-        lower_white = np.array([220, 220, 220], dtype=np.uint8)
-        upper_white = np.array([255, 255, 255], dtype=np.uint8)
-
-        mask = cv2.inRange(hsv, lower_white, upper_white)
 
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x + w + 10, y + h + 10), (255, 0, 0), 2)
@@ -106,6 +89,7 @@ def faceFilter():
                 roi = np.expand_dims(roi, axis=0)
 
                 # make a prediction on the ROI, then lookup the class
+                # don't forget to input the correct directory of the filter
                 preds = classifier.predict(roi)[0]
                 label = emotion_labels[preds.argmax()]
                 if label == 'Happy':
