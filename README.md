@@ -10,7 +10,8 @@
 
 - The shape_predictor_68_face_landmarks.dat is a pre-trained facial landmark detector inside the dlib library used to estimate the location of 68 (x, y)-coordinates that map to facial structures on the face.
 
-      The indexes of the 68 coordinates can be visualized on the image: https://www.pyimagesearch.com/wp-     content/uploads/2017/04/facial_landmarks_68markup-1024x825.jpg
+     The indexes of the 68 coordinates can be visualized on the image: 
+     https://www.pyimagesearch.com/wp-content/uploads/2017/04/facial_landmarks_68markup-1024x825.jpg
 
 - The Eyefilter.py is the code for coordinating and storing the eye positions from the dlib facial landmark detector. It is used to locate the eyes of the person for filter.
 
