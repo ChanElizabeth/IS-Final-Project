@@ -19,4 +19,4 @@
 
 - The Filter file contain the images that we used as filter for the face filter based on emotion detection.
 
-- The ImageTest file contatin the images that we take from google and we used to test the model prediction based on the image classification.
+- The ImageTest file contain the images that we take from google and we used to test the model prediction based on the image classification.
